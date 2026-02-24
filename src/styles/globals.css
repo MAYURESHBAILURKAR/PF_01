@@ -1,0 +1,241 @@
+/* =====================================================
+   DESIGN TOKENS
+===================================================== */
+:root {
+  /* Colors */
+  --bg: #080808;
+  --bg-2: #111111;
+  --fg: #e8e6e0;
+  --fg-muted: #888880;
+  --accent: #c8ff57;
+  --accent-dark: #9dd400;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --card-bg: #141414;
+
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing */
+  --section-px: clamp(20px, 4vw, 60px);
+  --section-py: clamp(80px, 10vw, 160px);
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme='light'] {
+  --bg: #f2f0ea;
+  --bg-2: #e8e6df;
+  --fg: #111111;
+  --fg-muted: #555550;
+  --accent: #7c3aed;
+  --accent-dark: #5b21b6;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  /* scroll-behavior: smooth; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Hide cursor on desktop — custom cursor takes over */
+@media (min-width: 769px) {
+  body { cursor: none; }
+  a, button, [role="button"] { cursor: none; }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: #111;
+}
+
+/* =====================================================
+   TAILWIND BASE LAYER OVERRIDES
+===================================================== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* =====================================================
+   NOISE TEXTURE OVERLAY
+===================================================== */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* =====================================================
+   UTILITY CLASSES
+===================================================== */
+.clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-px {
+  padding-left: var(--section-px);
+  padding-right: var(--section-px);
+}
+
+.section-py {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+/* Reveal animation base states */
+.reveal-hidden {
+  overflow: hidden;
+}
+
+.reveal-inner {
+  display: block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* Fade up base state */
+.fade-up-init {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* =====================================================
+   PAGE TRANSITION OVERLAY
+===================================================== */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9980;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* =====================================================
+   GSAP WILL-CHANGE HINTS
+===================================================== */
+.gsap-animate {
+  will-change: transform, opacity;
+}
+
+/* =====================================================
+   SMOOTH SCROLL — Lenis
+===================================================== */
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* =====================================================
+   STAGGER ITEM — initial hidden state
+===================================================== */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(50px) scale(0.96);
+  will-change: transform, opacity;
+}
+
+/* =====================================================
+   GLOWING CARD on hover (enhanced)
+===================================================== */
+.glow-card {
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glow-card:hover {
+  box-shadow: 0 0 0 1px var(--accent), 0 20px 60px rgba(200,255,87,0.1);
+  transform: translateY(-4px);
+}
+
+/* =====================================================
+   COUNTER SHIMMER
+===================================================== */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.counter-shimmer {
+  background: linear-gradient(90deg, var(--accent) 0%, #fff 40%, var(--accent) 60%, var(--accent-dark) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* =====================================================
+   SCROLL PROGRESS BAR glow pulse
+===================================================== */
+@keyframes progressGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(200,255,87,0.5); }
+  50% { box-shadow: 0 0 20px rgba(200,255,87,0.9), 0 0 40px rgba(200,255,87,0.3); }
+}
