@@ -40,7 +40,9 @@ useEffect(() => {
     )
   }
 
-  if (!post) return null
+ if (!post) {
+    return <div className="text-center py-20">Post not found.</div>
+  }
 
   return (
     <article>
