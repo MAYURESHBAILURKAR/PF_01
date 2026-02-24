@@ -17,26 +17,26 @@ export default function BlogPage() {
   const [posts, setPosts] = useState(SAMPLE_POSTS)
   const [search, setSearch] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  
+
 
   useEffect(() => {
     setIsLoading(true)
     blogApi.getAll().then((res) => {
-      setPosts(res.data.blogs)
+      setPosts(res.data?.blogs || SAMPLE_POSTS)
       setIsLoading(false)
     })
-    .catch(() => {
-      setPosts(SAMPLE_POSTS)
-      setIsLoading(false)
-    })
+      .catch(() => {
+        setPosts(SAMPLE_POSTS)
+        setIsLoading(false)
+      })
   }, [])
 
-  const filtered = posts.filter((p) =>
+  const filtered = (posts || []).filter((p) =>
     p.title.toLowerCase().includes(search.toLowerCase()) ||
     p.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()))
   )
 
-  if(isLoading){
+  if (isLoading) {
     return <LoadingScreen isLoading={isLoading} />
   }
 
