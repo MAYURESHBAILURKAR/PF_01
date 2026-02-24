@@ -60,7 +60,7 @@ useEffect(() => {
         </Link>
 
         <div className="flex flex-wrap gap-2 mb-6">
-          {post.tags.map((tag) => (
+          {post.tags?.map((tag) => (
             <span key={tag} className="font-mono text-[10px] tracking-wider uppercase px-3 py-1.5 border rounded-full" style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}>
               {tag}
             </span>
