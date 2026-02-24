@@ -16,11 +16,13 @@ export default function BlogPostPage() {
 
 useEffect(() => {
     setLoading(true)
-    console.log('SAMPLE_POSTS',SAMPLE_POSTS);
     
     blogApi.getOne(slug)
       .then((res) => { 
-        const fetchedPost = res?.data || SAMPLE_POSTS.find((el) => el.slug === slug);
+        const isActualPost = res?.data && typeof res.data === 'object' && res.data.title;
+      
+        const fetchedPost = isActualPost ? res.data : SAMPLE_POSTS.find((el) => el.slug === slug);
+        
         setPost(fetchedPost || null);
         setLoading(false);
       })
@@ -29,9 +31,7 @@ useEffect(() => {
         setPost(fallbackPost || null); 
         setLoading(false);
       })
-
-    }, [slug])
-    console.log('post',post);
+  }, [slug])
 
   if (loading) {
     return (
