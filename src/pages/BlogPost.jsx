@@ -16,6 +16,7 @@ export default function BlogPostPage() {
 
 useEffect(() => {
     setLoading(true)
+    console.log('SAMPLE_POSTS',SAMPLE_POSTS);
     
     blogApi.getOne(slug)
       .then((res) => { 
@@ -28,7 +29,9 @@ useEffect(() => {
         setPost(fallbackPost || null); 
         setLoading(false);
       })
-  }, [slug])
+
+    }, [slug])
+    console.log('post',post);
 
   if (loading) {
     return (
