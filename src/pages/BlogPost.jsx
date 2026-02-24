@@ -8,83 +8,25 @@ import { blogApi } from '@/lib/api'
 import { formatDate, readingTime } from '@/lib/utils'
 import { SAMPLE_POSTS } from '../lib/data'
 
-// const SAMPLE_POST = {
-//   _id: '1',
-//   slug: 'building-performant-react-apps',
-//   title: 'Building Performant React Apps with GSAP Animations',
-//   content: `# Building Performant React Apps with GSAP Animations
-
-// GSAP (GreenSock Animation Platform) is the industry standard for professional-grade web animations. But integrating it with React requires care to avoid memory leaks and performance issues.
-
-// ## The Problem
-
-// React's component lifecycle doesn't naturally align with GSAP's imperative animation API. The most common mistake developers make is creating GSAP animations without proper cleanup.
-
-// \`\`\`javascript
-// // ❌ Wrong - no cleanup, causes memory leaks
-// useEffect(() => {
-//   gsap.to('.element', { x: 100, duration: 1 })
-// }, [])
-// \`\`\`
-
-// ## The Solution: GSAP Context
-
-// GSAP 3.12 introduced the \`gsap.context()\` API which makes cleanup trivial:
-
-// \`\`\`javascript
-// // ✅ Correct - clean, safe, no leaks
-// useEffect(() => {
-//   const ctx = gsap.context(() => {
-//     gsap.to('.element', { x: 100, duration: 1 })
-//     ScrollTrigger.create({ ... })
-//   }, containerRef) // scope to component
-
-//   return () => ctx.revert() // cleanup on unmount
-// }, [])
-// \`\`\`
-
-// ## ScrollTrigger Best Practices
-
-// Always register plugins at the module level, not inside components:
-
-// \`\`\`javascript
-// import gsap from 'gsap'
-// import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-// gsap.registerPlugin(ScrollTrigger) // ← at module level
-// \`\`\`
-
-// ## Performance Tips
-
-// 1. Use \`will-change: transform\` on animated elements sparingly
-// 2. Prefer \`transform\` over position properties
-// 3. Use \`autoAlpha\` instead of separate \`opacity\` and \`visibility\`
-// 4. Batch animations into timelines
-
-// ## Conclusion
-
-// With proper cleanup via \`gsap.context()\` and ScrollTrigger best practices, GSAP and React work beautifully together.
-// `,
-//   tags: ['React', 'GSAP', 'Performance'],
-//   date: '2025-02-15',
-//   author: 'Mayuresh Bailurkar',
-// }
 
 export default function BlogPostPage() {
   const { slug } = useParams()
   const [post, setPost] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
+useEffect(() => {
+    setLoading(true)
+    
     blogApi.getOne(slug)
       .then((res) => { 
-        setPost(res.data); 
-        setLoading(false) 
+        const fetchedPost = res?.data || SAMPLE_POSTS.find((el) => el.slug === slug);
+        setPost(fetchedPost || null);
+        setLoading(false);
       })
       .catch(() => { 
-        let filtPos = SAMPLE_POSTS.find((el)=> el.slug == slug)
-        setPost(filtPos); 
-        setLoading(false) 
+        const fallbackPost = SAMPLE_POSTS.find((el) => el.slug === slug);
+        setPost(fallbackPost || null); 
+        setLoading(false);
       })
   }, [slug])
 
