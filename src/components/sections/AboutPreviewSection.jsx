@@ -141,7 +141,7 @@ export default function AboutPreviewSection() {
         <a
           href={Resume}
           download
-          className="inline-flex items-center gap-2 border font-medium text-sm tracking-wider uppercase transition-all duration-300 hover:bg-[var(--accent)] hover:text-[#111] hover:border-[var(--accent)]"
+          className="inline-flex items-center gap-2 border font-medium text-sm tracking-wider uppercase transition-all duration-300 hover:bg-[var(--accent)] hover:!text-[#111] hover:border-[var(--accent)]"
           style={{
             padding: '14px 28px',
             borderColor: 'var(--border-color)',

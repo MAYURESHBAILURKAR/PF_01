@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { PROJECTS } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
+import nexus from '@/assets/nexus/Nexus_1.png'
+import mytheresa from '@/assets/mytheresa/mythersa_1.webp'
+
+const images = [null, nexus, null, mytheresa]
 
 export default function ProjectsPage() {
   const [activeProject, setActiveProject] = useState(null)
@@ -43,7 +47,7 @@ export default function ProjectsPage() {
           <span className="inline-block w-6 h-px" style={{ background: 'var(--accent)' }} />
           Portfolio
         </p>
-        <h1 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(3.5rem, 10vw, 10rem)', letterSpacing: '-0.04em' }}>
+        <h1 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)', letterSpacing: '-0.04em' }}>
           {['Selected', 'Work &', 'Projects.'].map((line, i) => (
             <span key={i} className="block overflow-hidden">
               <span className="projects-hero-line block" style={{
@@ -76,15 +80,27 @@ export default function ProjectsPage() {
           willChange: 'transform',
         }}
       >
+
         {activeProject && (
-          <div className="flex flex-col items-center gap-2">
-            <span className="font-display font-extrabold text-3xl" style={{ color: activeProject.accentColor }}>
-              {activeProject.num}
-            </span>
-            <span className="font-mono text-[9px] tracking-widest uppercase" style={{ color: activeProject.accentColor, opacity: 0.6 }}>
-              View Case Study →
-            </span>
-          </div>
+          <>
+            {images?.[activeProject.num - 1] ? (
+              <img
+                src={images[activeProject.num - 1]} // Dynamic source
+                alt={activeProject.title || "Project Preview"}
+                className="w-full h-full object-cover object-top"
+              />
+            ) : (
+              <div className="flex flex-col items-center gap-2">
+                <span className="font-display font-extrabold text-3xl" style={{ color: activeProject.accentColor }}>
+                  {activeProject.num}
+                </span>
+                <span className="font-mono text-[9px] tracking-widest uppercase" style={{ color: activeProject.accentColor, opacity: 0.6 }}>
+                  View Case Study →
+                </span>
+              </div>
+
+            )}
+          </>
         )}
       </div>
 

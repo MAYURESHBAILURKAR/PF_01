@@ -41,7 +41,7 @@ export default function BlogPage() {
   }
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       {/* Header */}
       <div
         className="border-b"
@@ -51,7 +51,7 @@ export default function BlogPage() {
           <span className="inline-block w-6 h-px" style={{ background: 'var(--accent)' }} />
           Blog
         </p>
-        <h1 className="font-display font-extrabold leading-none mb-8" style={{ fontSize: 'clamp(3.5rem, 10vw, 10rem)', letterSpacing: '-0.04em' }}>
+        <h1 className="font-display font-extrabold leading-none mb-8" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)', letterSpacing: '-0.04em' }}>
           <span className="block">Thoughts &</span>
           <span className="block italic" style={{ fontFamily: 'var(--font-serif)', color: 'var(--accent)', fontWeight: 400 }}>Writings.</span>
         </h1>
@@ -119,6 +119,6 @@ export default function BlogPage() {
           </div>
         )}
       </section>
-    </>
+    </div>
   )
 }

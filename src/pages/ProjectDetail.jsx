@@ -211,7 +211,7 @@ export default function ProjectDetailPage() {
         <div ref={titleRef}>
           <h1
             className="font-display font-extrabold leading-none mb-10"
-            style={{ fontSize: 'clamp(2.8rem,8vw,9rem)', letterSpacing: '-0.04em' }}
+            style={{ fontSize: 'clamp(2.2rem,8vw,9rem)', letterSpacing: '-0.04em' }}
           >
             {project.title.split(' ').map((word, i) => (
               <span key={i} className="block" style={{ overflow: 'hidden' }}>

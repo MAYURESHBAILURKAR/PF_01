@@ -58,7 +58,7 @@ export default function ContactPage() {
           <span className="inline-block w-6 h-px" style={{ background: 'var(--accent)' }} />
           Get in Touch
         </p>
-        <h1 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(3.5rem, 10vw, 10rem)', letterSpacing: '-0.04em' }}>
+        <h1 className="font-display font-extrabold leading-none" style={{ fontSize: 'clamp(3rem, 10vw, 10rem)', letterSpacing: '-0.04em' }}>
           {["Let's", 'Work', 'Together.'].map((line, i) => (
             <span key={i} className="block overflow-hidden">
               <span

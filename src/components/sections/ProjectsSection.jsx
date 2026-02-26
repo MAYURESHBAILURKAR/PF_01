@@ -4,10 +4,30 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PROJECTS } from '@/lib/data'
 import { motion, AnimatePresence } from 'framer-motion'
+import nexus from '@/assets/nexus/Nexus_1.png'
+import mytheresa from '@/assets/mytheresa/mythersa_1.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const images = [null, nexus, null, mytheresa]
+
 function ProjectModal({ project, onClose }) {
+  // ── Lock body scroll while modal is open ─────────────────────
+  // Without this, wheel events that escape the modal panel scroll
+  // the page behind the backdrop.
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [])
+
+  // ── Escape key to close ───────────────────────────────────────
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [onClose])
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,38 +42,77 @@ function ProjectModal({ project, onClose }) {
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.95, y: 20 }}
         transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
-        className="relative w-full max-w-2xl border overflow-hidden"
-        style={{ background: 'var(--bg)', borderColor: 'var(--border-color)', borderRadius: '4px', maxHeight: '85vh', overflowY: 'auto' }}
+        className="relative w-full max-w-2xl border"
+        style={{
+          background: 'var(--bg)',
+          borderColor: 'var(--border-color)',
+          borderRadius: '4px',
+          // ── The panel itself scrolls, not the backdrop ────────
+          maxHeight: '85vh',
+          overflowY: 'auto',
+          // Prevents wheel events from bubbling up to the backdrop
+          // and triggering page scroll once the panel hits its limit
+          overscrollBehavior: 'contain',
+        }}
+        // Stop click AND wheel from reaching the backdrop
         onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
       >
-        {/* Image placeholder */}
+        {/* Image — show project image if available, else accent number */}
         <div
-          className="w-full flex items-center justify-center border-b"
-          style={{ height: '240px', background: 'var(--card-bg)', borderColor: 'var(--border-color)' }}
+          className="w-full flex items-center justify-center border-b sticky top-0 z-10"
+          style={{
+            height: '240px',
+            background: images[project.num - 1] ? 'var(--card-bg)' : `linear-gradient(135deg, ${project.accentColor}12 0%, var(--card-bg) 100%)`,
+            borderColor: 'var(--border-color)',
+            flexShrink: 0,
+          }}
         >
-          <span className="font-display font-extrabold text-5xl" style={{ color: project.accentColor }}>
-            {project.num}
-          </span>
+          {images[project.num - 1] ? (
+            <img
+              src={images[project.num - 1]}
+              alt={project.title}
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <span className="font-display font-extrabold text-5xl select-none" style={{ color: project.accentColor }}>
+              {project.num}
+            </span>
+          )}
+
+          {/* Close button — floating top-right corner of image */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 flex items-center justify-center border transition-all duration-200"
+            style={{
+              width: 36, height: 36,
+              borderColor: 'rgba(255,255,255,0.2)',
+              background: 'rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(8px)',
+              color: '#fff',
+              borderRadius: 2,
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.6)' }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)' }}
+          >
+            ✕
+          </button>
         </div>
 
         {/* Content */}
         <div className="p-8">
           <div className="flex items-start justify-between mb-6">
-            <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', letterSpacing: '-0.02em' }}>
-              {project.title}
-            </h2>
-            <button
-              onClick={onClose}
-              className="p-2 border rounded transition-colors duration-200 ml-4 flex-shrink-0"
-              style={{ borderColor: 'var(--border-color)', color: 'var(--fg-muted)' }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--fg-muted)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border-color)' }}
-            >
-              ✕
-            </button>
+            <div>
+              <p className="font-mono text-[10px] tracking-widest uppercase mb-2" style={{ color: project.accentColor }}>
+                Project {project.num}
+              </p>
+              <h2 className="font-display font-bold" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', letterSpacing: '-0.02em' }}>
+                {project.title}
+              </h2>
+            </div>
           </div>
 
-          <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--fg-muted)' }}>
+          <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--fg-muted)', lineHeight: 1.8 }}>
             {project.description}
           </p>
 
@@ -69,25 +128,59 @@ function ProjectModal({ project, onClose }) {
             ))}
           </div>
 
-          <div className="flex gap-4">
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-200"
-              style={{ padding: '12px 24px', background: 'var(--accent)', color: '#111' }}
-            >
-              Live Demo ↗
-            </a>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 border rounded-full font-medium text-sm tracking-wider uppercase transition-all duration-200"
+          <div className="flex flex-wrap gap-3">
+            {/* Live Demo — external link, use <a> not <Link> */}
+            {project.live && project.live !== '#' && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
+                style={{ padding: '12px 24px', background: project.accentColor, color: '#111' }}
+                onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 8px 24px ${project.accentColor}44` }}
+                onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none' }}
+              >
+                Live Demo ↗
+              </a>
+            )}
+
+            {/* GitHub — external link, use <a> not <Link> */}
+            {project.github && project.github !== '#' && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border rounded-full font-medium text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
+                style={{ padding: '12px 24px', borderColor: 'var(--border-color)', color: 'var(--fg)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--fg)'
+                  e.currentTarget.style.background = 'var(--card-bg)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'var(--border-color)'
+                  e.currentTarget.style.background = 'transparent'
+                }}
+              >
+                GitHub
+              </a>
+            )}
+
+            {/* Internal detail page — use <Link> */}
+            <Link
+              to={`/projects/${project.id}`}
+              className="inline-flex items-center gap-2 border rounded-full font-medium text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
               style={{ padding: '12px 24px', borderColor: 'var(--border-color)', color: 'var(--fg)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = project.accentColor
+                e.currentTarget.style.color = project.accentColor
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-color)'
+                e.currentTarget.style.color = 'var(--fg)'
+              }}
             >
-              GitHub
-            </a>
+              View Details →
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -200,12 +293,24 @@ export default function ProjectsSection({ limit }) {
           }}
         >
           {activeProject && (
-            <span
-              className="font-display font-extrabold text-xl"
-              style={{ color: activeProject.accentColor }}
-            >
-              {activeProject.num}
-            </span>
+            <>
+              {images?.[activeProject.num - 1] ? (
+                <img
+                  src={images[activeProject.num - 1]} // Dynamic source
+                  alt={activeProject.title || "Project Preview"}
+                  className="w-full h-full object-cover object-top"
+                />
+              ) : (
+                <span
+                  className="font-display font-extrabold text-xl"
+                  style={{ color: activeProject.accentColor }}
+                >
+                  {activeProject.num}:
+                  <br />
+                  Coming Soon
+                </span>
+              )}
+            </>
           )}
         </div>
 

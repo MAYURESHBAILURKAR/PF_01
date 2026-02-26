@@ -1,5 +1,12 @@
 const wishSphereImages = Object.values(
-  import.meta.glob('@/assets/wishSphere/*.{png,jpg,jpeg,webp}', {
+  import.meta.glob('@/assets/nexus/*.{png,jpg,jpeg,webp}', {
+    eager: true,
+    import: 'default',
+  })
+)
+
+const mytheresaImages = Object.values(
+  import.meta.glob('@/assets/mytheresa/*.{png,jpg,jpeg,webp}', {
     eager: true,
     import: 'default',
   })
@@ -56,7 +63,7 @@ export const PROJECTS = [
     accentColor: '#c8ff57',
     live: '#',
     github: '#',
-    images: wishSphereImages,
+    images: [],
   },
   {
     id: 2,
@@ -68,7 +75,7 @@ export const PROJECTS = [
     accentColor: '#7c3aed',
     live: '#',
     github: '#',
-    images: [],
+    images: wishSphereImages,
   },
   {
     id: 3,
@@ -104,7 +111,7 @@ export const PROJECTS = [
     accentColor: '#ffd700',
     live: 'https://mytheresa-neon.vercel.app/',
     github: '#',
-    images: [],
+    images: mytheresaImages,
   },
 ]
 

@@ -84,7 +84,7 @@ export default function AboutPage() {
   }, [])
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       {/* Hero */}
       <div
         ref={headingRef}
@@ -213,6 +213,6 @@ export default function AboutPage() {
 
       <SkillsSection />
       <CTASection />
-    </>
+    </div>
   )
 }
