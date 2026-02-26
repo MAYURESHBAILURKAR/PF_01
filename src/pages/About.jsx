@@ -5,7 +5,9 @@ import { PERSONAL, TIMELINE, STATS } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
 import SkillsSection from '@/components/sections/SkillsSection'
 import img2 from '@/assets/img2.webp'
+import img3 from '@/assets/m1e.webp'
 import Resume from '@/assets/Mayuresh_Bailurkar.pdf'
+import { useThemeStore } from '@/store'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -73,6 +75,7 @@ function TimelineItem({ item, index }) {
 
 export default function AboutPage() {
   const headingRef = useRef(null)
+  const { theme, toggleTheme } = useThemeStore()
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -140,7 +143,7 @@ export default function AboutPage() {
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
             <img
-              src={img2}
+              src={theme == 'dark' ? img2 : img3}
               alt="Mayuresh Bailurkar"
               className="w-full h-full object-cover object-top"
             />

@@ -4,7 +4,9 @@ import { useGSAPReveal, useGSAPCounter } from '@/hooks/useGSAP'
 import { useParallax } from '@/hooks/useGSAP'
 import { PERSONAL, STATS } from '@/lib/data'
 import img2 from '@/assets/img2.webp'
+import img3 from '@/assets/m1e.webp'
 import Resume from '@/assets/Mayuresh_Bailurkar.pdf'
+import { useThemeStore } from '@/store'
 
 function StatCard({ num, suffix, label }) {
   const ref = useRef(null)
@@ -39,6 +41,8 @@ export default function AboutPreviewSection() {
   const imageRef = useRef(null)
   useGSAPReveal(sectionRef)
   useParallax(imageRef, -12) // subtle upward parallax on photo
+  const { theme, toggleTheme } = useThemeStore()
+
 
   return (
     <section
@@ -60,7 +64,7 @@ export default function AboutPreviewSection() {
           {/* Placeholder icon */}
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
             <img
-              src={img2}
+              src={theme == 'dark' ? img2 : img3}
               alt="Mayuresh Bailurkar"
               className="w-full h-full object-cover object-top"
             />
@@ -68,7 +72,7 @@ export default function AboutPreviewSection() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background: `
-    linear-gradient(to top, var(--bg), transparent 60%),
+    linear-gradient(to top, var(--bg), transparent 50%),
     linear-gradient(to bottom, var(--bg), transparent 10%),
     linear-gradient(to left, var(--bg), transparent 10%),
     linear-gradient(to right, var(--bg), transparent 10%)
