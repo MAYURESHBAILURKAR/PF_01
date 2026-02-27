@@ -29,11 +29,11 @@
 [data-theme='light'] {
   --bg: #f2f0ea;
   --bg-2: #e8e6df;
-  --fg: #111111;
+  --fg: #2F3E46;
   --fg-muted: #555550;
-  --accent: #7c3aed;
-  --accent-dark: #5b21b6;
-  --border-color: rgba(0, 0, 0, 0.1);
+  --accent: #84A98C;
+  --accent-dark: #2F3E46;
+  --border-color: #c7e4cd;
   --card-bg: #ffffff;
 }
 
