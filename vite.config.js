@@ -20,13 +20,6 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Heavy blog rendering libs — only used on /blog/:slug
-            if (id.includes('react-syntax-highlighter') ||
-                id.includes('react-markdown') ||
-                id.includes('remark-gfm') ||
-                id.includes('prismjs')) {
-              return 'blog-libs'
-            }
             // Framer Motion
             if (id.includes('framer-motion')) {
               return 'motion'
@@ -49,7 +42,13 @@ export default defineConfig({
             if (id.includes('react-hook-form')) {
               return 'form'
             }
-            // Everything else from node_modules (zustand, axios, etc.)
+            // NOTE: react-syntax-highlighter, react-markdown, remark-gfm, prismjs
+            // are intentionally NOT split into a shared "blog-libs" chunk.
+            // Manual chunking here caused a circular reference through vendor
+            // (TDZ error: "Cannot access 'Oe' before initialization").
+            // Letting them bundle into the lazy BlogPost page chunk keeps
+            // everything self-contained and avoids the cross-chunk race.
+            // Everything else (zustand, axios, etc.)
             return 'vendor'
           }
           // Blog post content — large markdown, only needed on /blog routes
