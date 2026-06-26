@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion } from 'framer-motion'
 import { PROJECTS } from '@/lib/data'
+import { useSEO, useJsonLd, projectSEO, breadcrumbJsonLd, projectJsonLd } from '@/components/SEOHead'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -135,6 +136,14 @@ export default function ProjectDetailPage() {
   const prevProject = currentIdx > 0 ? PROJECTS[currentIdx - 1] : null
   const nextProject = currentIdx < PROJECTS.length - 1 ? PROJECTS[currentIdx + 1] : null
 
+  useSEO(project ? projectSEO(project) : { title: 'Project | Mayuresh Bailurkar', description: 'View project details.', path: '/projects' })
+  useJsonLd(project ? projectJsonLd(project) : null)
+  useJsonLd(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Projects', path: '/projects' },
+    { name: project?.title || 'Project' },
+  ]))
+
   // Redirect if project not found
   useEffect(() => {
     if (!project) navigate('/projects', { replace: true })
@@ -255,7 +264,7 @@ export default function ProjectDetailPage() {
             <a
               href={project.live}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
               style={{ padding: '14px 28px', background: project.accentColor, color: '#111' }}
               onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 12px 32px ${project.accentColor}44` }}
@@ -268,7 +277,7 @@ export default function ProjectDetailPage() {
             <a
               href={project.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border rounded-full font-medium text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
               style={{ padding: '14px 28px', borderColor: 'var(--border-color)', color: 'var(--fg)' }}
             >
@@ -368,7 +377,7 @@ export default function ProjectDetailPage() {
                     <a
                       href={project.live}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-between text-sm font-medium border px-4 py-3 transition-all duration-200 group"
                       style={{ borderColor: 'var(--border-color)', color: 'var(--fg)' }}
                       onMouseEnter={(e) => {
@@ -388,7 +397,7 @@ export default function ProjectDetailPage() {
                     <a
                       href={project.github}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-between text-sm font-medium border px-4 py-3 transition-all duration-200"
                       style={{ borderColor: 'var(--border-color)', color: 'var(--fg-muted)' }}
                       onMouseEnter={(e) => {
@@ -610,10 +619,13 @@ function HorizontalGallery({ project }) {
             {/* The actual image */}
             <img
               src={img}
-              alt={`${project.title} screenshot ${i + 1}`}
+              alt={`${project.title} — ${project.tags.slice(0,2).join(', ')} project screenshot ${i + 1}`}
               className="absolute inset-0 top-9 w-full object-cover object-top"
               style={{ height: 'calc(100% - 36px)' }}
+              width="960"
+              height="640"
               loading="lazy"
+              decoding="async"
             />
 
             {/* Subtle accent gradient overlay on first card */}

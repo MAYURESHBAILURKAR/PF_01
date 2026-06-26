@@ -1,0 +1,13 @@
+{
+  "background_color": "#080808",
+  "description": "Full-Stack Software Developer Portfolio — Angular, React, Node.js, Microservices",
+  "display": "standalone",
+  "icons": [
+    { "sizes": "192x192", "src": "/android-chrome-192x192.png", "type": "image/png" },
+    { "sizes": "512x512", "src": "/android-chrome-512x512.png", "type": "image/png" }
+  ],
+  "name": "Mayuresh Bailurkar — Software Developer",
+  "short_name": "MB Portfolio",
+  "start_url": "/",
+  "theme_color": "#080808"
+}

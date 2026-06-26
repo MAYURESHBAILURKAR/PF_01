@@ -6,6 +6,7 @@ import { PROJECTS } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
 import nexus from '@/assets/nexus/Nexus_1.png'
 import mytheresa from '@/assets/mytheresa/mythersa_1.webp'
+import { useSEO, useJsonLd, PAGE_SEO, breadcrumbJsonLd } from '@/components/SEOHead'
 
 const images = [null, nexus, null, mytheresa]
 
@@ -14,6 +15,12 @@ export default function ProjectsPage() {
   const previewRef = useRef(null)
   const headingRef = useRef(null)
   const navigate = useNavigate()
+
+  useSEO(PAGE_SEO.projects)
+  useJsonLd(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Projects', path: '/projects' },
+  ]))
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -85,8 +92,12 @@ export default function ProjectsPage() {
           <>
             {images?.[activeProject.num - 1] ? (
               <img
-                src={images[activeProject.num - 1]} // Dynamic source
-                alt={activeProject.title || "Project Preview"}
+                src={images[activeProject.num - 1]}
+                alt={activeProject.title ? `${activeProject.title} project preview thumbnail` : "Project preview thumbnail"}
+                width="320"
+                height="200"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-top"
               />
             ) : (

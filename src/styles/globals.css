@@ -65,10 +65,15 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Hide cursor on desktop — custom cursor takes over */
-@media (min-width: 769px) {
-  body { cursor: none; }
-  a, button, [role="button"] { cursor: none; }
+@media (pointer: fine) {
+  [data-theme='dark'] { cursor: url('/cursor-dark.svg') 3 3, auto; }
+  [data-theme='dark'] a, [data-theme='dark'] button, [data-theme='dark'] [role="button"] {
+    cursor: url('/cursor-pointer-dark.svg') 12 12, pointer;
+  }
+  [data-theme='light'] { cursor: url('/cursor-light.svg') 3 3, auto; }
+  [data-theme='light'] a, [data-theme='light'] button, [data-theme='light'] [role="button"] {
+    cursor: url('/cursor-pointer-light.svg') 12 12, pointer;
+  }
 }
 
 a {

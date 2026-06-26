@@ -4,10 +4,18 @@ import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { contactApi } from '@/lib/api'
 import { PERSONAL } from '@/lib/data'
+import { useSEO, useJsonLd, PAGE_SEO, breadcrumbJsonLd, contactPageJsonLd } from '@/components/SEOHead'
 
 export default function ContactPage() {
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const headingRef = useRef(null)
+
+  useSEO(PAGE_SEO.contact)
+  useJsonLd(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' },
+  ]))
+  useJsonLd(contactPageJsonLd())
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
@@ -89,11 +97,12 @@ export default function ContactPage() {
             Have a project in mind or want to explore a collaboration? I'd love to hear from you. Fill out the form or reach out directly.
           </p>
 
-          <div className="space-y-8">
+          <address className="space-y-8 not-italic">
             <div>
               <div className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--fg-muted)' }}>Email</div>
               <a
                 href={`mailto:${PERSONAL.email}`}
+                aria-label={`Email ${PERSONAL.email}`}
                 className="font-display font-bold text-xl transition-colors duration-300"
                 onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg)' }}
@@ -107,13 +116,14 @@ export default function ContactPage() {
             </div>
             <div>
               <div className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: 'var(--fg-muted)' }}>Socials</div>
-              <div className="flex gap-4 flex-wrap">
+              <nav className="flex gap-4 flex-wrap" aria-label="Social media links">
                 {Object.entries(PERSONAL.social).map(([platform, url]) => (
                   <a
                     key={platform}
                     href={url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label={`${platform} profile`}
                     className="font-mono text-xs tracking-wider uppercase px-4 py-2 border rounded-full transition-all duration-300 capitalize"
                     style={{ borderColor: 'var(--border-color)', color: 'var(--fg-muted)' }}
                     onMouseEnter={(e) => {
@@ -128,9 +138,9 @@ export default function ContactPage() {
                     {platform}
                   </a>
                 ))}
-              </div>
+              </nav>
             </div>
-          </div>
+          </address>
         </div>
 
         {/* Right: Form */}
@@ -139,12 +149,15 @@ export default function ContactPage() {
             <div className="space-y-8">
               {/* Name */}
               <div>
-                <label className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
+                <label htmlFor="contact-name" className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
                   Your Name *
                 </label>
                 <input
+                  id="contact-name"
                   {...register('name', { required: 'Name is required' })}
                   placeholder="John Doe"
+                  aria-required="true"
+                  aria-invalid={errors.name ? 'true' : 'false'}
                   style={{
                     ...inputStyle,
                     borderColor: errors.name ? '#ff6b6b' : 'var(--border-color)',
@@ -153,7 +166,7 @@ export default function ContactPage() {
                   onBlur={(e) => { e.target.style.borderColor = errors.name ? '#ff6b6b' : 'var(--border-color)' }}
                 />
                 {errors.name && (
-                  <span className="font-mono text-xs mt-1 block" style={{ color: '#ff6b6b' }}>
+                  <span role="alert" className="font-mono text-xs mt-1 block" style={{ color: '#ff6b6b' }}>
                     {errors.name.message}
                   </span>
                 )}
@@ -161,16 +174,19 @@ export default function ContactPage() {
 
               {/* Email */}
               <div>
-                <label className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
+                <label htmlFor="contact-email" className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
                   Email Address *
                 </label>
                 <input
+                  id="contact-email"
                   {...register('email', {
                     required: 'Email is required',
                     pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email address' }
                   })}
                   type="email"
                   placeholder="john@company.com"
+                  aria-required="true"
+                  aria-invalid={errors.email ? 'true' : 'false'}
                   style={{
                     ...inputStyle,
                     borderColor: errors.email ? '#ff6b6b' : 'var(--border-color)',
@@ -179,7 +195,7 @@ export default function ContactPage() {
                   onBlur={(e) => { e.target.style.borderColor = errors.email ? '#ff6b6b' : 'var(--border-color)' }}
                 />
                 {errors.email && (
-                  <span className="font-mono text-xs mt-1 block" style={{ color: '#ff6b6b' }}>
+                  <span role="alert" className="font-mono text-xs mt-1 block" style={{ color: '#ff6b6b' }}>
                     {errors.email.message}
                   </span>
                 )}
@@ -187,13 +203,16 @@ export default function ContactPage() {
 
               {/* Message */}
               <div>
-                <label className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
+                <label htmlFor="contact-message" className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
                   Your Message *
                 </label>
                 <textarea
+                  id="contact-message"
                   {...register('message', { required: 'Message is required', minLength: { value: 20, message: 'Message must be at least 20 characters' } })}
                   rows={5}
                   placeholder="Tell me about your project..."
+                  aria-required="true"
+                  aria-invalid={errors.message ? 'true' : 'false'}
                   style={{
                     ...inputStyle,
                     resize: 'none',
@@ -203,7 +222,7 @@ export default function ContactPage() {
                   onBlur={(e) => { e.target.style.borderColor = errors.message ? '#ff6b6b' : 'var(--border-color)' }}
                 />
                 {errors.message && (
-                  <span className="font-mono text-xs mt-1 block" style={{ color: '#ff6b6b' }}>
+                  <span role="alert" className="font-mono text-xs mt-1 block" style={{ color: '#ff6b6b' }}>
                     {errors.message.message}
                   </span>
                 )}

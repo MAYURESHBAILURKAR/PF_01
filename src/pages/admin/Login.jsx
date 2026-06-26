@@ -54,13 +54,16 @@ export default function AdminLoginPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
+            <label htmlFor="admin-username" className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
               Username
             </label>
             <input
+              id="admin-username"
               {...register('username', { required: true })}
               type="text"
               placeholder="admin"
+              aria-required="true"
+              aria-invalid={errors.username ? 'true' : 'false'}
               style={{ ...inputStyle, borderColor: errors.username ? '#ff6b6b' : 'var(--border-color)' }}
               onFocus={(e) => { e.target.style.borderColor = 'var(--accent)' }}
               onBlur={(e) => { e.target.style.borderColor = errors.username ? '#ff6b6b' : 'var(--border-color)' }}
@@ -68,13 +71,16 @@ export default function AdminLoginPage() {
           </div>
 
           <div>
-            <label className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
+            <label htmlFor="admin-password" className="font-mono text-xs tracking-widest uppercase block mb-2" style={{ color: 'var(--fg-muted)' }}>
               Password
             </label>
             <input
+              id="admin-password"
               {...register('password', { required: true })}
               type="password"
               placeholder="••••••••"
+              aria-required="true"
+              aria-invalid={errors.password ? 'true' : 'false'}
               style={{ ...inputStyle, borderColor: errors.password ? '#ff6b6b' : 'var(--border-color)' }}
               onFocus={(e) => { e.target.style.borderColor = 'var(--accent)' }}
               onBlur={(e) => { e.target.style.borderColor = errors.password ? '#ff6b6b' : 'var(--border-color)' }}

@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import { blogApi } from '@/lib/api'
 import { formatDate, readingTime } from '@/lib/utils'
 import { SAMPLE_POSTS } from '../lib/data'
+import { useSEO, useJsonLd, blogPostSEO, PAGE_SEO, breadcrumbJsonLd, articleJsonLd } from '@/components/SEOHead'
 
 
 export default function BlogPostPage() {
@@ -16,22 +17,30 @@ export default function BlogPostPage() {
 
 useEffect(() => {
     setLoading(true)
-    
+
     blogApi.getOne(slug)
-      .then((res) => { 
+      .then((res) => {
         const isActualPost = res?.data && typeof res.data === 'object' && res.data.title;
-      
+
         const fetchedPost = isActualPost ? res.data : SAMPLE_POSTS.find((el) => el.slug === slug);
-        
+
         setPost(fetchedPost || null);
         setLoading(false);
       })
-      .catch(() => { 
+      .catch(() => {
         const fallbackPost = SAMPLE_POSTS.find((el) => el.slug === slug);
-        setPost(fallbackPost || null); 
+        setPost(fallbackPost || null);
         setLoading(false);
       })
   }, [slug])
+
+  useSEO(post ? blogPostSEO(post) : PAGE_SEO.blog)
+  useJsonLd(post ? articleJsonLd(post) : null)
+  useJsonLd(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post?.title || 'Post' },
+  ]))
 
   if (loading) {
     return (
@@ -84,9 +93,9 @@ useEffect(() => {
             By {post.author || 'Mayuresh Bailurkar'}
           </span>
           <span style={{ color: 'var(--border-color)' }}>·</span>
-          <span className="font-mono text-xs tracking-wider" style={{ color: 'var(--fg-muted)' }}>
+          <time dateTime={post.date} className="font-mono text-xs tracking-wider" style={{ color: 'var(--fg-muted)' }}>
             {formatDate(post.date)}
-          </span>
+          </time>
           <span style={{ color: 'var(--border-color)' }}>·</span>
           <span className="font-mono text-xs tracking-wider" style={{ color: 'var(--fg-muted)' }}>
             {readingTime(post.content)}

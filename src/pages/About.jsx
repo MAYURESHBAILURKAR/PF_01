@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { PERSONAL, TIMELINE, STATS } from '@/lib/data'
@@ -8,6 +9,7 @@ import img2 from '@/assets/img2.webp'
 import img3 from '@/assets/m1e.webp'
 import Resume from '@/assets/Mayuresh_Bailurkar.pdf'
 import { useThemeStore } from '@/store'
+import { useSEO, useJsonLd, PAGE_SEO, breadcrumbJsonLd } from '@/components/SEOHead'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -77,6 +79,12 @@ export default function AboutPage() {
   const headingRef = useRef(null)
   const { theme, toggleTheme } = useThemeStore()
 
+  useSEO(PAGE_SEO.about)
+  useJsonLd(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+  ]))
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to('.about-hero-line', {
@@ -144,7 +152,11 @@ export default function AboutPage() {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
             <img
               src={theme == 'dark' ? img2 : img3}
-              alt="Mayuresh Bailurkar"
+              alt="Mayuresh Bailurkar — Full-Stack Software Developer"
+              width="400"
+              height="500"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-top"
             />
             <div
@@ -169,6 +181,18 @@ export default function AboutPage() {
           <p style={{ color: 'var(--fg-muted)', fontSize: '1.05rem', lineHeight: 1.9, marginBottom: '40px' }}>
             When I'm not coding, I'm exploring design systems, contributing to open source, reading about distributed systems, or experimenting with creative coding. I believe the best products are born when engineering and design think together.
           </p>
+
+          <nav aria-label="Related pages" className="flex flex-wrap gap-4 mb-8 font-mono text-xs tracking-widest uppercase">
+            <Link to="/projects" style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+              View Selected Projects →
+            </Link>
+            <a href="#skills" style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+              See Tech Stack →
+            </a>
+            <Link to="/contact" style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+              Get in Touch →
+            </Link>
+          </nav>
 
           {/* Stats */}
           <div className="grid grid-cols-2 border-l border-t mb-8" style={{ borderColor: 'var(--border-color)' }}>

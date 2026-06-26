@@ -12,6 +12,7 @@ export default function Footer() {
   return (
     <footer
       ref={ref}
+      role="contentinfo"
       className="border-t"
       style={{
         background: 'var(--bg-2)',
@@ -34,7 +35,7 @@ export default function Footer() {
         </div>
 
         {/* Links */}
-        <nav className="flex items-center justify-center md:justify-end gap-6 flex-wrap">
+        <nav aria-label="Footer" className="flex items-center justify-center md:justify-end gap-6 flex-wrap">
           {[
             { label: 'GitHub', href: PERSONAL.social.github },
             { label: 'LinkedIn', href: PERSONAL.social.linkedin },
@@ -45,7 +46,7 @@ export default function Footer() {
               key={link.label}
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel="noreferrer"
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="text-xs tracking-widest uppercase font-medium transition-colors duration-300"
               style={{ color: 'var(--fg-muted)' }}
               onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}

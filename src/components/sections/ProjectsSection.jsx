@@ -71,7 +71,11 @@ function ProjectModal({ project, onClose }) {
           {images[project.num - 1] ? (
             <img
               src={images[project.num - 1]}
-              alt={project.title}
+              alt={`${project.title} — ${project.tags.slice(0,2).join(', ')} project screenshot`}
+              width="800"
+              height="240"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-top"
             />
           ) : (
@@ -134,7 +138,7 @@ function ProjectModal({ project, onClose }) {
               <a
                 href={project.live}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
                 style={{ padding: '12px 24px', background: project.accentColor, color: '#111' }}
                 onMouseEnter={(e) => { e.currentTarget.style.boxShadow = `0 8px 24px ${project.accentColor}44` }}
@@ -149,7 +153,7 @@ function ProjectModal({ project, onClose }) {
               <a
                 href={project.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border rounded-full font-medium text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]"
                 style={{ padding: '12px 24px', borderColor: 'var(--border-color)', color: 'var(--fg)' }}
                 onMouseEnter={(e) => {
@@ -296,8 +300,12 @@ export default function ProjectsSection({ limit }) {
             <>
               {images?.[activeProject.num - 1] ? (
                 <img
-                  src={images[activeProject.num - 1]} // Dynamic source
-                  alt={activeProject.title || "Project Preview"}
+                  src={images[activeProject.num - 1]}
+                  alt={activeProject.title ? `${activeProject.title} hover preview thumbnail` : "Project preview thumbnail"}
+                  width="320"
+                  height="200"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-top"
                 />
               ) : (

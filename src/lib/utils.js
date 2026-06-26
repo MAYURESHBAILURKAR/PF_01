@@ -1,11 +1,3 @@
-import { clsx } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-
-// Tailwind class merger (required by shadcn pattern)
-export function cn(...inputs) {
-  return twMerge(clsx(inputs))
-}
-
 // Format date
 export function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', {

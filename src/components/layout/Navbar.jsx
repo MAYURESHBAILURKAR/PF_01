@@ -2,12 +2,19 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useThemeStore, useUIStore } from '@/store'
+import { PERSONAL } from '@/lib/data'
 
 const NAV_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Work', href: '/projects' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
+]
+
+const MOBILE_SOCIALS = [
+  { label: 'GitHub', href: PERSONAL.social.github },
+  { label: 'LinkedIn', href: PERSONAL.social.linkedin },
+  { label: 'Twitter', href: PERSONAL.social.twitter },
 ]
 
 export default function Navbar() {
@@ -38,6 +45,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
+        aria-label="Primary"
         initial={{ y: -80, opacity: 0 }}
         animate={isPreloaderDone ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -55,7 +63,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 font-display font-extrabold text-lg tracking-snug select-none">
+        <Link to="/" aria-label="Mayuresh Bailurkar — Home" className="flex items-center gap-2 font-display font-extrabold text-lg tracking-snug select-none">
           <span
             className="w-2 h-2 rounded-full inline-block"
             style={{ background: 'var(--accent)', animation: 'pulse 2s ease-in-out infinite' }}
@@ -64,7 +72,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center gap-10" role="list">
           {NAV_LINKS.map((link) => {
             const isActive = location.pathname === link.href
             return (
@@ -208,16 +216,19 @@ export default function Navbar() {
               transition={{ delay: 0.45 }}
               className="flex gap-6 mt-12"
             >
-              {['GitHub', 'LinkedIn', 'Twitter'].map((s) => (
+              {MOBILE_SOCIALS.map((s) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} profile`}
                   className="text-xs tracking-widest uppercase font-medium transition-colors duration-300"
                   style={{ color: 'var(--fg-muted)' }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--fg-muted)' }}
                 >
-                  {s}
+                  {s.label}
                 </a>
               ))}
             </motion.div>

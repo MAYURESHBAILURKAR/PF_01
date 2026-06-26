@@ -5,8 +5,11 @@ import SkillsSection from '@/components/sections/SkillsSection'
 import BlogPreviewSection from '@/components/sections/BlogPreviewSection'
 import CTASection from '@/components/sections/CTASection'
 import AboutPreviewSection from '@/components/sections/AboutPreviewSection'
+import { useSEO, PAGE_SEO } from '@/components/SEOHead'
 
 export default function HomePage() {
+  useSEO(PAGE_SEO.home)
+
   return (
     <>
       <HeroSection />

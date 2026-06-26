@@ -5,6 +5,7 @@ import { blogApi } from '@/lib/api'
 import { formatDate, readingTime } from '@/lib/utils'
 import LoadingScreen, { useLoading } from '@/components/animations/LoadingScreen'
 import { SAMPLE_POSTS } from '../lib/data'
+import { useSEO, useJsonLd, PAGE_SEO, breadcrumbJsonLd } from '@/components/SEOHead'
 
 // const SAMPLE_POSTS = [
 //   { _id: '1', slug: 'building-performant-react-apps', title: 'Building Performant React Apps with GSAP Animations', content: 'A deep dive into integrating GSAP with React without the common pitfalls that kill performance and cause memory leaks in your application...', tags: ['React', 'GSAP', 'Performance'], date: '2025-02-15' },
@@ -17,6 +18,12 @@ export default function BlogPage() {
   const [posts, setPosts] = useState(SAMPLE_POSTS)
   const [search, setSearch] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  useSEO(PAGE_SEO.blog)
+  useJsonLd(breadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Blog', path: '/blog' },
+  ]))
 
 
   useEffect(() => {

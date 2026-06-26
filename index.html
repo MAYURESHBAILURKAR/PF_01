@@ -1,23 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" dir="ltr" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Mayuresh Bailurkar — Full-Stack Software Developer. Building scalable, elegant digital products." />
-    <meta name="keywords" content="software developer, full-stack, React, Node.js, MongoDB, portfolio" />
-    <meta property="og:title" content="Mayuresh Bailurkar — Software Developer" />
-    <meta property="og:description" content="Full-Stack Software Developer building scalable, elegant digital products." />
+    <meta name="theme-color" content="#080808" />
+    <meta name="author" content="Mayuresh Bailurkar" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="English" />
+
+    <title>Mayuresh Bailurkar — Full-Stack Software Developer | Angular, Node.js, React</title>
+    <meta name="description" content="Mayuresh Bailurkar is a Full-Stack Software Developer specializing in Angular, React, Node.js, and microservices. Building scalable, elegant web and mobile applications from Pune, India." />
+    <meta name="keywords" content="Mayuresh Bailurkar, Software Developer, Full-Stack Developer, Angular Developer, Node.js Developer, React Developer, Backend Developer, Frontend Developer, Microservices, MongoDB, TypeScript, Portfolio" />
+    <link rel="canonical" href="https://mayureshbailurkar.dev/" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <title>Mayuresh Bailurkar — Software Developer</title>
-    <!-- Fonts -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://mayureshbailurkar.dev/" />
+    <meta property="og:title" content="Mayuresh Bailurkar — Full-Stack Software Developer" />
+    <meta property="og:description" content="Full-Stack Software Developer specializing in Angular, React, Node.js, and microservices. Building scalable, elegant web and mobile applications." />
+    <meta property="og:image" content="https://mayureshbailurkar.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mayuresh Bailurkar — Software Developer Portfolio" />
+    <meta property="og:site_name" content="Mayuresh Bailurkar" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mayuresh Bailurkar — Full-Stack Software Developer" />
+    <meta name="twitter:description" content="Full-Stack Software Developer specializing in Angular, React, Node.js, and microservices." />
+    <meta name="twitter:image" content="https://mayureshbailurkar.dev/og-image.png" />
+    <meta name="twitter:image:alt" content="Mayuresh Bailurkar — Software Developer Portfolio" />
+
+    <!-- Preconnect — DNS + TCP + TLS warm-up -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    <link rel="dns-prefetch" href="https://pf-backend-jbgj.onrender.com" />
+
+    <!-- Fonts — loaded non-blocking via media trick + swap to avoid FOIT -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+    </noscript>
   </head>
   <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-[#111] focus:text-sm focus:font-bold">Skip to main content</a>
     <div id="root"></div>
+    <!-- Preload critical JS chunks so the browser starts fetching them in parallel with HTML parse -->
+    <link rel="modulepreload" href="/src/main.jsx" />
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

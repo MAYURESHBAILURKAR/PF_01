@@ -6,7 +6,6 @@ import { blogApi } from '@/lib/api'
 import { formatDate, readingTime } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import LoadingScreen, { useLoading } from '@/components/animations/LoadingScreen'
-import { SAMPLE_POSTS } from '../../lib/data'
 gsap.registerPlugin(ScrollTrigger)
 
 
@@ -67,22 +66,23 @@ function BlogCard({ post, index }) {
 }
 
 export default function BlogPreviewSection({ limit = 3 }) {
-  const [posts, setPosts] = useState(SAMPLE_POSTS.slice(0, limit))
+  const [posts, setPosts] = useState([])
   const sectionRef = useRef(null)
   const gridRef = useRef(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setIsLoading(true)
+    let mounted = true
     blogApi.getAll({ limit, sort: '-date' })
       .then((res) => {
-        setPosts(res.data.blogs.slice(0, limit))
-        setIsLoading(false)
+        if (mounted) { setPosts(res.data.blogs.slice(0, limit)); setIsLoading(false) }
       })
       .catch(() => {
-        setPosts(SAMPLE_POSTS.slice(0, limit))
-        setIsLoading(false)
+        import('@/lib/samplePosts').then(({ SAMPLE_POSTS }) => {
+          if (mounted) { setPosts(SAMPLE_POSTS.slice(0, limit)); setIsLoading(false) }
+        })
       })
+    return () => { mounted = false }
   }, [limit])
 
   // Stagger blog cards in

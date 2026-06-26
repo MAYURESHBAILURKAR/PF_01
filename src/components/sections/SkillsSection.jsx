@@ -57,6 +57,8 @@ export default function SkillsSection() {
   return (
     <section
       ref={ref}
+      id="skills"
+      aria-labelledby="skills-heading"
       style={{ paddingBottom: 'var(--section-py)', paddingTop: 0 }}
     >
       <div style={{ padding: '0 var(--section-px)' }}>
@@ -68,6 +70,7 @@ export default function SkillsSection() {
           Tech Stack
         </p> */}
         <h2
+          id="skills-heading"
           className="font-display font-extrabold leading-none mb-12"
           style={{ fontSize: 'clamp(2.4rem, 6vw, 6rem)', letterSpacing: '-0.03em' }}
         >
