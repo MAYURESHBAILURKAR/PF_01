@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion } from 'framer-motion'
 import { PROJECTS } from '@/lib/data'
+import MarkdownRenderer from '@/components/animations/MarkdownRenderer'
 import { useSEO, useJsonLd, projectSEO, breadcrumbJsonLd, projectJsonLd } from '@/components/SEOHead'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -320,7 +321,7 @@ export default function ProjectDetailPage() {
               <ProjectMockup project={project} />
             )}
 
-            {/* Description */}
+            {/* Description — rich markdown for AI & human readability */}
             <div className="mt-12 mb-10">
               <p
                 className="font-mono text-[10px] tracking-widest uppercase flex items-center gap-2 mb-4"
@@ -329,8 +330,8 @@ export default function ProjectDetailPage() {
                 <span className="inline-block w-5 h-px" style={{ background: project.accentColor }} />
                 Overview
               </p>
-              <p
-                className="leading-relaxed"
+              <div
+                className="project-detail-content leading-relaxed"
                 style={{
                   color: 'var(--fg-muted)',
                   fontSize: 'clamp(1rem,1.6vw,1.15rem)',
@@ -338,11 +339,11 @@ export default function ProjectDetailPage() {
                   maxWidth: '620px',
                 }}
               >
-                {project.description}
-              </p>
+                <MarkdownRenderer content={project.fullDescription || project.description} />
+              </div>
             </div>
 
-            {/* Feature highlights grid */}
+            {/* Feature highlights grid — from project.features instead of buildFeatures() */}
             <div className="mb-4">
               <p
                 className="font-mono text-[10px] tracking-widest uppercase flex items-center gap-2 mb-6"
@@ -352,7 +353,7 @@ export default function ProjectDetailPage() {
                 Key Features
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {features.map((feat, i) => (
+                {(project.features || features).map((feat, i) => (
                   <FeatureCard key={i} {...feat} accentColor={project.accentColor} index={i} />
                 ))}
               </div>

@@ -227,7 +227,7 @@ export default function HeroSection() {
       {/* Bottom row */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8">
         <p className="hero-desc max-w-sm" style={{ color: 'var(--fg-muted)', fontSize: 'clamp(0.9rem,1.5vw,1.05rem)', lineHeight: 1.7, opacity: 0, transform: 'translateY(20px)' }}>
-          Building <span style={{ color: 'var(--fg)' }}>scalable, elegant</span> digital products. Passionate about clean code, great UX, and pushing what's possible on the web.
+          Full-stack developer shipping <span style={{ color: 'var(--fg)' }}>Angular, React, and Node.js</span> applications. 3+ years building production software for <span style={{ color: 'var(--fg)' }}>fintech, logistics, and e-commerce</span> from Pune, India.
         </p>
         <div className="hero-cta flex items-center gap-4 flex-wrap" style={{ opacity: 0, transform: 'translateY(20px)' }}>
           <Link to="/projects" className="inline-flex items-center gap-2 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-[2px]" style={{ padding: '16px 32px', background: 'var(--accent)', color: '#111' }} onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 12px 32px rgba(200,255,87,0.35)' }} onMouseLeave={(e) => { e.currentTarget.style.boxShadow = 'none' }}>

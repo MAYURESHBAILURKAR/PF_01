@@ -1,13 +1,18 @@
 {
   "background_color": "#080808",
-  "description": "Full-Stack Software Developer Portfolio — Angular, React, Node.js, Microservices",
+  "categories": ["portfolio", "development", "technology", "engineering"],
+  "description": "Full-Stack Software Developer portfolio — Angular, React, Node.js, TypeScript, Microservices, and AI-powered applications. Mayuresh Bailurkar ships web and mobile products from Pune, India.",
+  "dir": "ltr",
   "display": "standalone",
   "icons": [
-    { "sizes": "192x192", "src": "/android-chrome-192x192.png", "type": "image/png" },
-    { "sizes": "512x512", "src": "/android-chrome-512x512.png", "type": "image/png" }
+    { "sizes": "192x192", "src": "/android-chrome-192x192.png", "type": "image/png", "purpose": "any maskable" },
+    { "sizes": "512x512", "src": "/android-chrome-512x512.png", "type": "image/png", "purpose": "any maskable" }
   ],
-  "name": "Mayuresh Bailurkar — Software Developer",
+  "lang": "en-US",
+  "name": "Mayuresh Bailurkar — Software Developer Portfolio",
+  "orientation": "any",
   "short_name": "MB Portfolio",
   "start_url": "/",
-  "theme_color": "#080808"
+  "theme_color": "#080808",
+  "scope": "/"
 }

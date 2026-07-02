@@ -4,20 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080808" />
+    <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f8f0" media="(prefers-color-scheme: light)" />
     <meta name="author" content="Mayuresh Bailurkar" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="language" content="English" />
 
+    <!-- Geo-location for local SEO & AI entity grounding -->
+    <meta name="geo.region" content="IN-MH" />
+    <meta name="geo.placename" content="Pune" />
+    <meta name="geo.position" content="18.5204;73.8567" />
+    <meta name="ICBM" content="18.5204, 73.8567" />
+
+    <!-- Canonical & identity -->
     <title>Mayuresh Bailurkar — Full-Stack Software Developer | Angular, Node.js, React</title>
     <meta name="description" content="Mayuresh Bailurkar is a Full-Stack Software Developer specializing in Angular, React, Node.js, and microservices. Building scalable, elegant web and mobile applications from Pune, India." />
     <meta name="keywords" content="Mayuresh Bailurkar, Software Developer, Full-Stack Developer, Angular Developer, Node.js Developer, React Developer, Backend Developer, Frontend Developer, Microservices, MongoDB, TypeScript, Portfolio" />
     <link rel="canonical" href="https://mayureshbailurkar.dev/" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicons & manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="/site.webmanifest" crossOrigin="use-credentials" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -38,12 +49,12 @@
     <meta name="twitter:image" content="https://mayureshbailurkar.dev/og-image.png" />
     <meta name="twitter:image:alt" content="Mayuresh Bailurkar — Software Developer Portfolio" />
 
-    <!-- Preconnect — DNS + TCP + TLS warm-up -->
+    <!-- Preconnect + DNS prefetch -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://pf-backend-jbgj.onrender.com" />
 
-    <!-- Fonts — loaded non-blocking via media trick + swap to avoid FOIT -->
+    <!-- Fonts — non-blocking via media=print + swap -->
     <link
       rel="preload"
       as="style"
@@ -58,9 +69,41 @@
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
     </noscript>
+
+    <!-- RSS feed for blog (optional but good for AI training coverage) -->
+    <link rel="alternate" type="application/rss+xml" title="Mayuresh Bailurkar — Blog" href="/rss.xml" />
+
+    <!-- Security / privacy hints (CSP would be on server; these are meta fallbacks) -->
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+    <!-- JSON-LD for bots that don't execute JS (Google, Bing, some AI crawlers) -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://mayureshbailurkar.dev#website","name":"Mayuresh Bailurkar","url":"https://mayureshbailurkar.dev/","description":"Mayuresh Bailurkar is a Full-Stack Software Developer specializing in Angular, React, Node.js, and microservices. Building scalable, elegant web and mobile applications from Pune, India.","publisher":{"@id":"https://mayureshbailurkar.dev#organization"}},{"@type":"Organization","@id":"https://mayureshbailurkar.dev#organization","name":"Mayuresh Bailurkar — Software Development","url":"https://mayureshbailurkar.dev/","logo":"https://mayureshbailurkar.dev/og-image.png","sameAs":["https://github.com/MAYURESHBAILURKAR","https://linkedin.com/in/mayuresh-bailurkar","https://x.com/mayuresh_b"],"founder":{"@id":"https://mayureshbailurkar.dev#person"}},{"@type":"Person","@id":"https://mayureshbailurkar.dev#person","name":"Mayuresh Bailurkar","url":"https://mayureshbailurkar.dev/","jobTitle":["Full-Stack Software Developer","Frontend Developer","Backend Developer","Mobile Application Developer"],"description":"Mayuresh Bailurkar is a Full-Stack Software Developer based in Pune, India. He has shipped production web and mobile applications since 2023 using Angular, React, Node.js, MongoDB, and Docker, with a particular focus on microservices architecture and AI-powered features.","knowsAbout":["Angular (v17-v19) with Signals","React 18+ & React Native (Expo)","Node.js & Express.js Microservices","MongoDB Data Modeling & Indexing","TypeScript & JavaScript (ES2024+)","Docker Containerization","JWT & OAuth 2.0 Authentication","Stripe Payment Integration","Google Gemini AI API Integration","REST API Design & Versioning","RBAC & Permission Systems","Ionic & Capacitor Cross-Platform","GSAP Animation","Tailwind CSS & CSS Architecture","Performance Optimization"],"sameAs":["https://github.com/MAYURESHBAILURKAR","https://linkedin.com/in/mayuresh-bailurkar","https://x.com/mayuresh_b"],"image":"https://mayureshbailurkar.dev/favicon.svg","address":{"@type":"PostalAddress","addressLocality":"Pune","addressRegion":"Maharashtra","addressCountry":"IN"},"worksFor":{"@id":"https://mayureshbailurkar.dev#organization"}}]}</script>
   </head>
   <body>
+    <!-- Skip to main content (a11y) -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-[#111] focus:text-sm focus:font-bold">Skip to main content</a>
+
+    <!-- noscript fallback: minimal static content for JS-disabled crawlers & users -->
+    <noscript>
+      <header style="padding:40px;max-width:800px;margin:0 auto;text-align:center;font-family:system-ui,sans-serif;line-height:1.6;color:#f2f8f0;background:#080808;">
+        <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:1rem;">Mayuresh Bailurkar</h1>
+        <p style="font-size:1.2rem;color:#c8ff57;margin-bottom:2rem;">Full-Stack Software Developer</p>
+        <p style="max-width:600px;margin:0 auto 2rem;">Building scalable, elegant web and mobile applications using Angular, React, Node.js, and microservices. Based in Pune, India.</p>
+        <nav style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
+          <a href="/about" style="color:#c8ff57;text-decoration:underline;">About</a>
+          <a href="/projects" style="color:#c8ff57;text-decoration:underline;">Projects</a>
+          <a href="/blog" style="color:#c8ff57;text-decoration:underline;">Blog</a>
+          <a href="/contact" style="color:#c8ff57;text-decoration:underline;">Contact</a>
+        </nav>
+        <address style="font-style:normal;color:#888;font-size:0.9rem;">
+          <a href="mailto:mayureshbailurkar@gmail.com" style="color:#c8ff57;">mayureshbailurkar@gmail.com</a> · Pune, Maharashtra, India
+        </address>
+      </header>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

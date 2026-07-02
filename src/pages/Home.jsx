@@ -5,10 +5,13 @@ import SkillsSection from '@/components/sections/SkillsSection'
 import BlogPreviewSection from '@/components/sections/BlogPreviewSection'
 import CTASection from '@/components/sections/CTASection'
 import AboutPreviewSection from '@/components/sections/AboutPreviewSection'
-import { useSEO, PAGE_SEO } from '@/components/SEOHead'
+import FAQSection from '@/components/sections/FAQSection'
+import { useSEO, useJsonLd, PAGE_SEO, faqJsonLd } from '@/components/SEOHead'
+import { FAQS } from '@/lib/data'
 
 export default function HomePage() {
   useSEO(PAGE_SEO.home)
+  useJsonLd(faqJsonLd(FAQS))
 
   return (
     <>
@@ -18,6 +21,7 @@ export default function HomePage() {
       <ProjectsSection limit={4} />
       <SkillsSection />
       <BlogPreviewSection limit={3} />
+      <FAQSection faqs={FAQS} limit={6} />
       <CTASection />
     </>
   )

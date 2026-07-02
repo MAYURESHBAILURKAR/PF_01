@@ -1,5 +1,53 @@
+# Robots.txt — permissive for search & generative engines
+# Allow all legitimate crawlers to access full site
+
 User-agent: *
 Allow: /
-Disallow: /admin/
 
+# Explicit allow for major AI & search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: omgili
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+# Disallow admin/private
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap location
 Sitemap: https://mayureshbailurkar.dev/sitemap.xml
+
+# Crawl-delay for politeness (optional, honored by some bots)
+Crawl-delay: 10
