@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -13,8 +13,32 @@ import { useSEO, useJsonLd, PAGE_SEO, breadcrumbJsonLd } from '@/components/SEOH
 
 gsap.registerPlugin(ScrollTrigger)
 
+function parseBullets(description) {
+  if (!description) return []
+  const lines = description.split('\n')
+  const bullets = []
+  let current = null
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed) continue
+    if (trimmed.startsWith('•')) {
+      if (current != null) bullets.push(current)
+      current = trimmed.replace(/^•\s*/, '')
+    } else if (current != null) {
+      current += ' ' + trimmed
+    } else {
+      current = trimmed
+    }
+  }
+  if (current != null) bullets.push(current)
+  return bullets
+}
+
+const VISIBLE_BULLETS = 3
+
 function TimelineItem({ item, index }) {
   const ref = useRef(null)
+  const [expanded, setExpanded] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -28,6 +52,11 @@ function TimelineItem({ item, index }) {
     }, ref)
     return () => ctx.revert()
   }, [index])
+
+  const bullets = parseBullets(item.description)
+  const hasMultipleBullets = bullets.length > 1
+  const showExpand = bullets.length > VISIBLE_BULLETS
+  const visibleBullets = expanded ? bullets : bullets.slice(0, VISIBLE_BULLETS)
 
   return (
     <div ref={ref} className="flex gap-6 md:gap-10 items-start">
@@ -67,9 +96,38 @@ function TimelineItem({ item, index }) {
         >
           {item.role}
         </h3>
-        <p style={{ color: 'var(--fg-muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-          {item.description}
-        </p>
+        {hasMultipleBullets ? (
+          <div style={{ color: 'var(--fg-muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
+            {visibleBullets.map((bullet, i) => (
+              <p key={i} className="mb-2 flex gap-2">
+                <span style={{ color: 'var(--accent)', flexShrink: 0 }}>•</span>
+                <span>{bullet}</span>
+              </p>
+            ))}
+            {showExpand && (
+              <button
+                type="button"
+                onClick={() => setExpanded(v => !v)}
+                aria-expanded={expanded}
+                className="font-mono text-xs tracking-widest uppercase mt-1 cursor-pointer"
+                style={{
+                  color: 'var(--accent)',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  textDecoration: 'underline',
+                  textUnderlineOffset: '4px',
+                }}
+              >
+                {expanded ? '← Show Less' : 'Read More →'}
+              </button>
+            )}
+          </div>
+        ) : (
+          <p style={{ color: 'var(--fg-muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
+            {item.description}
+          </p>
+        )}
       </div>
     </div>
   )

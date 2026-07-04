@@ -346,7 +346,16 @@ export const TIMELINE = [
     company: 'Self-Directed Projects',
     type: 'work',
     description:
-      'Designing and shipping scalable web and mobile applications end-to-end. Built a microservices platform with AI-powered Gemini API messaging, a React Native logistics app with offline-first architecture and WhatsApp approval deep linking, and a MERN e-commerce platform with Stripe payments.',
+      `• Designing and shipping scalable web and mobile applications end-to-end. Built a microservices platform with AI-powered Gemini API messaging, a React Native logistics app with offline-first architecture and WhatsApp approval deep linking, and a MERN e-commerce platform with Stripe payments.
+       WishSphere: Architecting and developing a scalable microservices backend, successfully transitioning from a monolithic
+application to improve component independence and maintainability.
+• Designed and containerized independent services using Docker, including an Express API Gateway, an AI Message Generation
+service powered by the Gemini API, and a Guestbook service with stateless JWT authentication.
+• Nexus Supply (Mobile WMS): Architected a cross-platform logistics app using React Native, Expo Router, and
+Tamagui, streamlining warehouse workflows and dynamic payout tracking.
+• Designed a high-performance UI utilizing Tamagui and built a secure RESTful API with Node.js/MongoDB, implementing strict
+Role-Based Access Control (RBAC) via JWT for administrators and workers.
+• Engineered a shipment tracking engine that calculates dynamic worker payo`,
   },
   {
     year: 'Feb 2023 — Aug 2025',
@@ -354,7 +363,14 @@ export const TIMELINE = [
     company: 'MAIARA Technologies Pvt. Ltd., Pune',
     type: 'work',
     description:
-      'Delivered enterprise fintech and loyalty applications for corporate clients using Angular, Ionic, Bootstrap, SCSS, Node.js, and REST APIs. Improved dashboard responsiveness by 30% through lazy loading and memoized selectors. Implemented hierarchical RBAC systems and biometric authentication for banking apps.',
+      `• Developed and maintained enterprise-grade web and mobile applications for banking, financial services, reconciliation, and loyalty management domains using Angular, Ionic Angular, Node.js, and MongoDB.
+ • Built scalable and responsive user interfaces with Angular 17/19, Bootstrap, SCSS, and TypeScript, improving application performance and user experience.
+ • Designed and implemented Role-Based Access Control (RBAC), JWT authentication, and permission management systems to enhance security and access governance.
+ • Developed complex business modules including reconciliation schedulers, rule engines, segment and criteria management systems, and loyalty program workflows.
+ • Collaborated closely with backend teams to integrate REST APIs, optimize data handling, and ensure seamless end-to-end functionality.
+ • Improved application responsiveness and reduced load times through lazy loading, code optimization, and efficient state management techniques.
+ • Development frontend for cross-platform mobile applications using Ionic Angular, delivering consistent experiences across Android and iOS platforms.
+ • Contributed to architecture discussions, feature planning, code reviews, and Agile development processes while consistently delivering high-quality solutions within project timelines.`,
   },
   {
     year: '2018',
@@ -362,7 +378,7 @@ export const TIMELINE = [
     company: 'KLE Engineering College, Belgaum',
     type: 'education',
     description:
-      'Bachelor of Engineering (Civil Engineering). Developed analytical and problem-solving skills that transferred directly into software engineering — systematic thinking, constraint analysis, and structured problem decomposition.',
+      'Bachelor of Engineering (Civil Engineering). Developed analytical and problem-solving skills that transferred directly into software engineering, systematic thinking, constraint analysis, and structured problem decomposition.',
   },
   {
     year: '2014',
