@@ -355,7 +355,8 @@ service powered by the Gemini API, and a Guestbook service with stateless JWT au
 Tamagui, streamlining warehouse workflows and dynamic payout tracking.
 • Designed a high-performance UI utilizing Tamagui and built a secure RESTful API with Node.js/MongoDB, implementing strict
 Role-Based Access Control (RBAC) via JWT for administrators and workers.
-• Engineered a shipment tracking engine that calculates dynamic worker payo`,
+• Engineered a shipment tracking engine that calculates dynamic worker payouts based on product quantities, and integrated
+automated WhatsApp deep linking for instant approval notifications.`,
   },
   {
     year: 'Feb 2023 — Aug 2025',
