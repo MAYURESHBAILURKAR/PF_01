@@ -2,7 +2,7 @@
 
 # dependencies
 node_modules/
-.agent/
+.agents/
 .claude/
 
 # Expo
