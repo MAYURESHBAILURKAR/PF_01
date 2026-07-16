@@ -47,7 +47,7 @@ Disallow: /api/
 Disallow: /*.json$
 
 # Sitemap location
-Sitemap: https://mayureshbailurkar.dev/sitemap.xml
+Sitemap: https://mayuresh-portfolio.pages.dev/sitemap.xml
 
 # Crawl-delay for politeness (optional, honored by some bots)
 Crawl-delay: 10

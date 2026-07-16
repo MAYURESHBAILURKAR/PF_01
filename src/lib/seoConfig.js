@@ -1,7 +1,7 @@
 // Centralized site identity & SEO metadata.
 // Single source of truth — used by JSON-LD, meta tags, sitemap, and noscript fallback.
 
-export const SITE_URL = 'https://mayureshbailurkar.dev'
+export const SITE_URL = 'https://mayuresh-portfolio.pages.dev'
 export const SITE_NAME = 'Mayuresh Bailurkar'
 export const SITE_SHORT_NAME = 'MB Portfolio'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`

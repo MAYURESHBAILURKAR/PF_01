@@ -3,90 +3,90 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
-    <loc>https://mayureshbailurkar.dev/</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://mayureshbailurkar.dev/og-image.png</image:loc>
+      <image:loc>https://mayuresh-portfolio.pages.dev/og-image.png</image:loc>
       <image:title>Mayuresh Bailurkar — Full-Stack Software Developer</image:title>
       <image:caption>Portfolio homepage featuring hero section with project highlights</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/about</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/about</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/projects</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/projects</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/projects/1</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/projects/1</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/projects/2</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/projects/2</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/projects/3</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/projects/3</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/projects/4</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/projects/4</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/projects/5</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/projects/5</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/blog</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/blog</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/blog/offline-first-react-native-watermelondb</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/blog/offline-first-react-native-watermelondb</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/blog/mastering-flatlist-performance-react-native</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/blog/mastering-flatlist-performance-react-native</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/blog/architecting-scalable-microservices</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/blog/architecting-scalable-microservices</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/blog/embracing-angular-signals</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/blog/embracing-angular-signals</loc>
     <lastmod>2026-02-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mayureshbailurkar.dev/contact</loc>
+    <loc>https://mayuresh-portfolio.pages.dev/contact</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
