@@ -94,7 +94,7 @@ export default function CTASection() {
         className="cta-sub text-base md:text-lg mx-auto mb-10 max-w-md"
         style={{ color: 'var(--fg-muted)', lineHeight: 1.7 }}
       >
-        Have a project in mind? I'm available for freelance work and full-time opportunities.
+        Have a project in mind? I'm currently working as a Software Developer at Firsteigen but remain open to new opportunities.
       </p>
 
       <div className="cta-sub flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">

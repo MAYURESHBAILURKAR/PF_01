@@ -65,7 +65,7 @@ export default function AboutPreviewSection() {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
             <img
               src={theme == 'dark' ? img2 : img3}
-              alt="Mayuresh Bailurkar — Full-Stack Software Developer building scalable web and mobile applications"
+              alt="Mayuresh Bailurkar — Software Developer at Firsteigen building scalable web and mobile applications"
               width="400"
               height="560"
               loading="lazy"

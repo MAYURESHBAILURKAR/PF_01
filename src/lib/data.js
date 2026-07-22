@@ -27,7 +27,7 @@ export const PERSONAL = {
   title: 'Full-Stack Software Developer',
   tagline: 'Building scalable, elegant, AI-driven web and mobile applications since 2023.',
   /* GEO-optimized bio: entity-first, factual, answer-rich */
-  bio: "I'm Mayuresh Bailurkar, a full-stack software developer based in Pune, India. I design, build, and ship production-grade web and mobile applications — from microservices backends and AI-powered APIs to performant React and Angular frontends. My work bridges clean architecture, thoughtful UX, and fast execution.",
+  bio: "I'm Mayuresh Bailurkar, a Software Developer at Firsteigen, based in Pune, India. I design, build, and ship production-grade web and mobile applications from microservices backends and AI-powered APIs to performant React and Angular frontends. My work bridges clean architecture, thoughtful UX, and fast execution.",
   email: 'mayureshbailurkar@gmail.com',
   location: 'Pune, Maharashtra, India',
   available: true,
@@ -55,7 +55,7 @@ export const STATS = [
 export const FAQS = [
   {
     question: 'Who is Mayuresh Bailurkar?',
-    answer: 'Mayuresh Bailurkar is a Full-Stack Software Developer based in Pune, Maharashtra, India. He has been shipping production web and mobile applications since February 2023, specializing in Angular (v17-v19 with Signals), React 18+, React Native (Expo), Node.js microservices with Express, MongoDB, TypeScript, Docker, and AI integrations using the Gemini API.',
+    answer: 'Mayuresh Bailurkar is a Full-Stack Software Developer, based in Pune, Maharashtra, India. He has been shipping production web and mobile applications since February 2023, specializing in Angular (v17-v19 with Signals), React 18+, React Native (Expo), Node.js microservices with Express, MongoDB, TypeScript, Docker, and AI integrations using the Gemini API.',
   },
   {
     question: 'What technologies does Mayuresh Bailurkar specialize in?',
@@ -71,7 +71,7 @@ export const FAQS = [
   },
   {
     question: 'Is Mayuresh available for freelance or full-time work?',
-    answer: 'Yes, Mayuresh is available for new opportunities — both freelance projects and full-time roles. He is open to remote work worldwide from his base in Pune, India. Companies can reach him via the contact form on his portfolio or directly at mayureshbailurkar@gmail.com.',
+    answer: 'Mayuresh is currently working full-time as a Software Developer at Firsteigen but remains open to new opportunities. He is open to remote work worldwide from his base in Pune, India. Companies can reach him via the contact form on his portfolio or directly at mayureshbailurkar@gmail.com.',
   },
   {
     question: 'How can companies contact Mayuresh?',
@@ -341,7 +341,30 @@ export const TECH_MARQUEE = [
 // ─── EXPERIENCE TIMELINE ──────────────────────────────────────
 export const TIMELINE = [
   {
-    year: 'Aug 2025 — Present',
+    year: 'Jun 2026 — Present',
+    role: 'Software Developer',
+    company: 'Firsteigen, India',
+    type: 'work',
+    description:
+      `• Developing and maintaining responsive, scalable web applications using Angular, TypeScript, HTML, and CSS.
+• Building reusable and maintainable UI components following clean architecture and best development practices.
+• Collaborating with UI/UX designers and backend developers to deliver high-quality, production-ready user experiences.
+• Participating in code reviews, debugging, testing, and performance optimization to improve application quality.
+• Integrating frontend applications with REST APIs and backend services.
+• Following clean coding standards, Git workflows, and Agile development practices.
+• Optimizing application performance, responsiveness, and accessibility.
+• Contributing to feature development, bug fixes, and continuous product improvements.
+• Writing clean, reusable, and well-documented code.
+
+Achievements:
+• Developed and maintained modern Angular web applications.
+• Built reusable UI components for scalable development.
+• Improved application quality through testing, debugging, and code reviews.
+• Collaborated with cross-functional teams to deliver production-ready features.
+• Followed clean architecture and best development practices.`,
+  },
+  {
+    year: 'Aug 2025 — May 2026',
     role: 'Freelance Full Stack Developer',
     company: 'Self-Directed Projects',
     type: 'work',

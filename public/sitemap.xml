@@ -4,60 +4,60 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://mayuresh-portfolio.pages.dev/og-image.png</image:loc>
-      <image:title>Mayuresh Bailurkar — Full-Stack Software Developer</image:title>
+      <image:title>Mayuresh Bailurkar — Software Developer at Firsteigen</image:title>
       <image:caption>Portfolio homepage featuring hero section with project highlights</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/about</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/projects</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/projects/1</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/projects/2</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/projects/3</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/projects/4</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/projects/5</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/blog</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -87,7 +87,7 @@
   </url>
   <url>
     <loc>https://mayuresh-portfolio.pages.dev/contact</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

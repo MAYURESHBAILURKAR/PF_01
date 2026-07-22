@@ -192,7 +192,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-end overflow-hidden" style={{ padding: '0 clamp(20px, 4vw, 60px) clamp(40px, 6vw, 80px)' }}>
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-end overflow-hidden" style={{ paddingTop: 'clamp(92px, 12vh, 140px)', paddingInline: 'clamp(20px, 4vw, 60px)', paddingBottom: 'clamp(40px, 6vw, 80px)' }}>
       {/* BG Grid */}
       <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(var(--border-color) 1px, transparent 1px), linear-gradient(90deg, var(--border-color) 1px, transparent 1px)', backgroundSize: '80px 80px', opacity: 0.4 }} />
 
@@ -201,7 +201,7 @@ export default function HeroSection() {
       <div ref={orb2Ref} className="absolute pointer-events-none rounded-full" style={{ width: 'clamp(200px,35vw,400px)', height: 'clamp(200px,35vw,400px)', background: 'radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%)', bottom: '20%', left: '-5%', animation: 'heroFloat 11s ease-in-out infinite reverse' }} />
 
       {/* Eyebrow */}
-      <p className="hero-eyebrow font-mono text-xs tracking-widest uppercase flex items-center gap-3 select-none" style={{ color: 'var(--accent)', opacity: 0, marginBottom: 'clamp(70px, 5vw, 96px)',paddingBottom: 'clamp(40px, 5vw, 96px)' }}>
+      <p className="hero-eyebrow font-mono text-xs tracking-widest uppercase flex items-center gap-3 select-none" style={{ color: 'var(--accent)', opacity: 0, marginBottom: 'clamp(20px, 3vw, 32px)' }}>
         <span className="inline-block w-8 h-px" style={{ background: 'var(--accent)' }} />
         {PERSONAL.available ? 'Available for new opportunities' : 'Currently unavailable'}
       </p>

@@ -11,9 +11,9 @@ export const SITE = {
   url: SITE_URL,
   name: SITE_NAME,
   shortName: SITE_SHORT_NAME,
-  title: 'Mayuresh Bailurkar — Full-Stack Software Developer | Angular, React, Node.js',
+  title: 'Mayuresh Bailurkar — Software Developer at Firsteigen | Angular, React, Node.js',
   description:
-    'Mayuresh Bailurkar is a Full-Stack Software Developer specializing in Angular, React, Node.js, MongoDB, microservices, and AI integrations. Building production web and mobile applications from Pune, India.',
+    'Mayuresh Bailurkar is a Software Developer at Firsteigen, specializing in Angular, TypeScript, React, Node.js, MongoDB, microservices, and AI integrations. Building production web and mobile applications from Pune, India.',
   tagline: 'Building scalable, elegant, AI-driven web and mobile applications.',
   ogImage: DEFAULT_OG_IMAGE,
   twitterHandle: '@mayureshb_',
@@ -53,7 +53,7 @@ export function makeAbsolute(path) {
 // schemas reference verbatim so AI engines see consistent truth.
 export const FACTS = {
   whoIs:
-    'Mayuresh Bailurkar is a Full-Stack Software Developer based in Pune, India. He has shipped production web and mobile applications since 2023 using Angular, React, Node.js, MongoDB, and Docker, with a particular focus on microservices architecture and AI-powered features.',
+    'Mayuresh Bailurkar is a Full-Stack Software Developer, based in Pune, India. He has shipped production web and mobile applications since 2023 using Angular, React, TypeScript, Node.js, MongoDB, and Docker, with a particular focus on microservices architecture and AI-powered features.',
   specializes:
     'Mayuresh specializes in Angular (v17–v19 with Signals), React and React Native, Node.js microservices with Express, MongoDB data modeling, JWT and OAuth authentication, Stripe payments, and integrating AI services such as the Gemini API.',
   value:
@@ -102,25 +102,37 @@ export function buildMeta({
 
 export const PAGE_SEO = {
   home: buildMeta({
-    title: 'Full-Stack Software Developer — Angular, React, Node.js',
+    title: 'Software Developer at Firsteigen — Angular, React, Node.js',
     description:
-      'Mayuresh Bailurkar is a Pune-based Full-Stack Software Developer. He ships scalable Angular, React, Node.js, MongoDB, and microservices applications with AI integrations — view his projects, blog, and experience.',
+      'Mayuresh Bailurkar is a Pune-based Software Developer at Firsteigen, shipping scalable Angular, React, Node.js, MongoDB, and microservices applications with AI integrations — view his projects, blog, and experience.',
     path: '/',
     keywords: [
       'Mayuresh Bailurkar',
-      'Full-Stack Developer',
+      'Firsteigen',
+      'Software Developer',
       'Angular Developer',
+      'Frontend Developer',
+      'TypeScript Developer',
       'React Developer',
       'Node.js Developer',
+      'Full-Stack Developer',
       'Microservices',
       'Software Engineer Pune',
     ],
   }),
   about: buildMeta({
-    title: 'About — Experience, Skills & Background',
+    title: 'About — Software Developer at Firsteigen | Angular Developer',
     description:
-      'Learn about Mayuresh Bailurkar — a Full-Stack Software Developer with 2.5+ years of experience delivering Angular, React, Node.js, Ionic, and microservices applications for fintech and logistics clients.',
+      'Learn about Mayuresh Bailurkar — a Software Developer currently at Firsteigen with 3+ years of experience delivering Angular, React, Node.js, Ionic, and microservices applications for fintech and logistics clients.',
     path: '/about',
+    keywords: [
+      'Mayuresh Bailurkar',
+      'Firsteigen',
+      'Software Developer',
+      'Angular Developer',
+      'Frontend Developer',
+      'TypeScript Developer',
+    ],
   }),
   projects: buildMeta({
     title: 'Projects — Full-Stack, Mobile & Microservices',
@@ -135,9 +147,9 @@ export const PAGE_SEO = {
     path: '/blog',
   }),
   contact: buildMeta({
-    title: 'Contact — Hire a Full-Stack Developer',
+    title: 'Contact — Hire a Full-Stack Software Developer',
     description:
-      'Get in touch with Mayuresh Bailurkar for freelance projects, full-time opportunities, or collaboration on web and mobile products. Available for new opportunities based in Pune, India — remote worldwide.',
+      'Get in touch with Mayuresh Bailurkar, Software Developer at Firsteigen, for freelance projects, full-time opportunities, or collaboration on web and mobile products. Based in Pune, India - remote worldwide.',
     path: '/contact',
   }),
 }

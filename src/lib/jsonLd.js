@@ -31,8 +31,11 @@ export function personJsonLd() {
     url: SITE_URL,
     email: SITE.authorEmail,
     jobTitle: [
-      'Full-Stack Software Developer',
+      'Software Developer at Firsteigen',
+      'Full-Stack Developer',
+      'Angular Developer',
       'Frontend Developer',
+      'TypeScript Developer',
       'Backend Developer',
       'Mobile Application Developer',
     ],
@@ -305,7 +308,7 @@ export function contactPageJsonLd() {
     name: `Contact ${SITE_NAME}`,
     url: `${SITE_URL}/contact`,
     description:
-      'Contact Mayuresh Bailurkar for freelance projects, full-time opportunities, or collaboration on web and mobile products.',
+      'Contact Mayuresh Bailurkar, Software Developer at Firsteigen, for freelance projects, full-time opportunities, or collaboration on web and mobile products.',
     mainEntity: {
       '@type': 'Person',
       '@id': ID.person,
