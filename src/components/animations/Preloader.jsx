@@ -2,63 +2,119 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { useUIStore } from '@/store'
 
-const LETTERS = ['M', 'A', 'Y', 'U', 'R', 'E', 'S', 'H']
-const ACCENT_START = 4
+const WORDS = [
+  'Hello',
+  'Bonjour',
+  'Hola',
+  'Ciao',
+  'Hallo',
+  'Olá',
+  'こんにちは',
+  '안녕하세요',
+  '你好',
+  'नमस्ते',
+  'Welcome',
+]
+
+const STEP = 0.25
 
 export default function Preloader({ onComplete }) {
   const wrapperRef = useRef(null)
-  const lettersRef = useRef([])
-  const barRef = useRef(null)
+  const wordRef = useRef(null)
+  const glowRef = useRef(null)
   const countRef = useRef(null)
   const setPreloaderDone = useUIStore((s) => s.setPreloaderDone)
 
   useEffect(() => {
     const wrapper = wrapperRef.current
-    if (!wrapper) return
-
-    // Lock scroll while preloader runs
-    document.body.style.overflow = 'hidden'
-
-    const bar = barRef.current
+    const wordEl = wordRef.current
     const countEl = countRef.current
-    const letters = lettersRef.current.filter(Boolean)
+    const glowEl = glowRef.current
 
-    // Animate progress counter
-    let progress = 0
-    const interval = setInterval(() => {
-      progress += Math.random() * 15 + 3
-      if (progress >= 100) { progress = 100; clearInterval(interval) }
-      if (bar) bar.style.width = Math.min(progress, 100) + '%'
-      if (countEl) countEl.textContent = String(Math.floor(Math.min(progress, 100))).padStart(2, '0') + '%'
-    }, 80)
+    if (!wrapper || !wordEl || !countEl || !glowEl) return
+
+    const glowTween = gsap.to(glowEl, {
+      keyframes: [
+        { scale: 1, opacity: 0.12, duration: 0 },
+        { scale: 1.15, opacity: 0.22, duration: 1.2, ease: 'sine.out' },
+        { scale: 1, opacity: 0.12, duration: 1.2, ease: 'sine.in' },
+      ],
+      repeat: -1,
+    })
+
+    document.body.style.overflow = 'hidden'
+    gsap.set(wordEl, { opacity: 0, y: 16 })
 
     function finish() {
-      clearInterval(interval)
       document.body.style.overflow = ''
-      // Signal store & parent
       setPreloaderDone()
       if (onComplete) onComplete()
     }
 
+    const entranceDur = STEP * 0.5
+    const exitDur = STEP * 0.5
+    const counter = { val: 0 }
+    const totalDuration = (WORDS.length - 1) * STEP + entranceDur
+
     const tl = gsap.timeline({ onComplete: finish })
 
-    tl.to(letters, {
-      y: 0,
-      duration: 0.9,
-      ease: 'power4.out',
-      stagger: 0.06,
-      delay: 0.2,
+    // Word chain built FIRST, with an explicit position (0) on the first item.
+    // That explicit position resets the timeline's insertion cursor, so every
+    // subsequent unpositioned tween chains correctly from 0 — regardless of
+    // what else gets added to the timeline later.
+    WORDS.forEach((word, i) => {
+      const isLast = i === WORDS.length - 1
+
+      tl.call(
+        () => {
+          wordEl.textContent = word
+          wordEl.style.color = isLast ? '#c8ff57' : '#e8e6e0'
+        },
+        null,
+        i === 0 ? 0 : undefined
+      )
+
+      tl.fromTo(
+        wordEl,
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: entranceDur, ease: 'power2.out' }
+      )
+
+      if (!isLast) {
+        tl.to(wordEl, {
+          opacity: 0,
+          y: -16,
+          duration: exitDur,
+          ease: 'power2.in',
+        })
+      }
     })
-    .to({}, { duration: 0.5 }) // brief hold
-    .to(wrapper, {
+
+    // Counter tween: explicit position 0 so it runs in parallel with the word
+    // chain above, not appended after it.
+    tl.to(
+      counter,
+      {
+        val: 100,
+        duration: totalDuration,
+        ease: 'power1.inOut',
+        onUpdate: () => {
+          countEl.textContent = String(Math.floor(counter.val)).padStart(2, '0')
+        },
+      },
+      0
+    )
+
+    tl.to(wrapper, {
       yPercent: -100,
       duration: 0.9,
       ease: 'power4.inOut',
+      delay: 0.35,
     })
 
     return () => {
-      clearInterval(interval)
       tl.kill()
+      glowTween.kill()
       document.body.style.overflow = ''
     }
   }, [setPreloaderDone, onComplete])
@@ -77,58 +133,111 @@ export default function Preloader({ onComplete }) {
         overflow: 'hidden',
       }}
     >
-      {/* Letters row */}
-      <div style={{ display: 'flex' }}>
-        {LETTERS.map((letter, i) => (
-          <span
-            key={i}
-            ref={(el) => (lettersRef.current[i] = el)}
-            style={{
-              display: 'inline-block',
-              fontFamily: 'Syne, sans-serif',
-              fontSize: 'clamp(2rem, 10vw, 9rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.02em',
-              color: i >= ACCENT_START ? '#c8ff57' : '#e8e6e0',
-              transform: 'translateY(120%)',
-              willChange: 'transform',
-              overflow: 'hidden',
-            }}
-          >
-            {letter}
-          </span>
-        ))}
-      </div>
-
-      {/* Progress bar */}
       <div
-        ref={barRef}
+        ref={glowRef}
         style={{
           position: 'absolute',
-          bottom: 0,
-          left: 0,
-          height: '3px',
-          width: '0%',
-          background: '#c8ff57',
-          transition: 'width 0.1s linear',
+          width: 'min(60vw, 700px)',
+          height: 'min(60vw, 700px)',
+          borderRadius: '50%',
+          background: `
+            radial-gradient(
+              circle,
+              #C8FF57 0%,
+              rgba(200,255,87,0.55) 10%,
+              rgba(200,255,87,0.22) 30%,
+              rgba(200,255,87,0.08) 50%,
+              transparent 100%
+            )
+          `,
+          filter: 'blur(20px)',
+          opacity: 0.12,
+          pointerEvents: 'none',
+          willChange: 'transform, opacity',
         }}
       />
 
-      {/* Percentage counter */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px', zIndex: 1 }}>
+        <span
+          style={{
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            background: '#c8ff57',
+            flexShrink: 0,
+            animation: 'preloaderDotPulse 1.2s ease-in-out infinite',
+          }}
+        />
+        <div style={{ overflow: 'hidden' }}>
+          <span
+            ref={wordRef}
+            style={{
+              display: 'inline-block',
+              fontFamily: 'Syne, sans-serif',
+              fontSize: 'clamp(1.8rem, 6vw, 4.5rem)',
+              fontWeight: 800,
+              letterSpacing: '-0.02em',
+              color: '#e8e6e0',
+              willChange: 'transform, opacity',
+            }}
+          />
+        </div>
+      </div>
+
       <div
-        ref={countRef}
         style={{
           position: 'absolute',
           bottom: '32px',
           right: '40px',
+          display: 'flex',
+          alignItems: 'flex-start',
           fontFamily: 'JetBrains Mono, monospace',
-          fontSize: '0.75rem',
-          color: 'rgba(255,255,255,0.3)',
-          letterSpacing: '0.1em',
+          color: '#e8e6e0',
+          lineHeight: 1,
         }}
       >
-        00%
+        <span ref={countRef} style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 600 }}>
+          00
+        </span>
+        <span style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', color: '#C8FF57', marginTop: '4px' }}>
+          %
+        </span>
       </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '32px',
+          left: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          fontFamily: 'JetBrains Mono, monospace',
+          fontSize: '0.7rem',
+          fontWeight: 600,
+          letterSpacing: '0.15em',
+          color: 'rgba(255,255,255,0.4)',
+          textTransform: 'uppercase',
+        }}
+      >
+        <span
+          style={{
+            width: '5px',
+            height: '5px',
+            borderRadius: '50%',
+            background: '#C8FF57',
+            animation: 'preloaderDotPulse 1.2s ease-in-out infinite',
+          }}
+        />
+        Loading Experience
+      </div>
+
+      <style>{`
+        @keyframes preloaderDotPulse {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.4); }
+        }
+      `}</style>
     </div>
   )
 }
