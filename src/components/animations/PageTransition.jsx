@@ -80,8 +80,8 @@ export function PageTransitionOverlay() {
           <stop offset="100%" stopColor="var(--accent-dark, #9dd400)" />
         </linearGradient>
         <linearGradient id="gradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%"   stopColor="var(--bg-2)" />
-          <stop offset="100%" stopColor="var(--accent)" />
+          <stop offset="0%"   stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#FFFFFF" />
         </linearGradient>
       </defs>
       
